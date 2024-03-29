@@ -1,93 +1,78 @@
-// Este é o seu arquivo de esquema Prisma,
-// saiba mais sobre ele na documentação: https://pris.ly/d/prisma-schema
-
-// Gerador para o cliente Prisma
 generator client {
   provider = "prisma-client-js"
 }
 
-// Fonte de dados para o banco de dados PostgreSQL
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-// Modelo para usuários
 model Usuario {
-  id          String     @id @default(uuid()) // Definindo o id como chave primária e com valor padrão UUID
-  nome        String     // Nome do usuário
-  email       String     @unique // Email do usuário, único
-  telefone    String     // Telefone do usuário
-  perfil      Perfil     // Perfil do usuário (enum)
-  status      Status     // Status do usuário (enum)
-  senha       String     // Senha do usuário
-  confirmacao String     // Confirmação de senha do usuário
+  id          String     @id @default(uuid()) 
+  nome        String     
+  email       String     @unique 
+  telefone    String     
+  perfil      Perfil     
+  status      Status     
+  senha       String     
+     
 
-  @@map("usuarios") // Mapeando o modelo para uma tabela chamada "usuarios" no banco de dados
+  @@map("usuarios") 
 }
 
-// Modelo para estagiários
-// Modelo para Estagiário
 model Estagiario {
-  id       String    @id @default(uuid()) // Definindo o id como chave primária e com valor padrão UUID
-  email    String    @unique // Email do estagiário, único
-  telefone String    // Telefone do estagiário
-  status   Status    // Status do estagiário (enum)
-  senha    String    // Senha do estagiário
+  id       String    @id @default(uuid()) 
+  email    String    @unique 
+  telefone String    
+  status   Status    
+  senha    String    
 
-  // Relacionamento com Contrato (um estagiário pode ter muitos contratos)
-  contratos Contrato[] // Relacionamento um-para-muitos com Contrato
+  contratos Contrato[]
 
-  @@map("estagiarios") // Mapeando o modelo para uma tabela chamada "estagiarios" no banco de dados
+  @@map("estagiarios")
 }
 
-// Modelo para Contrato
 model Contrato {
-  id               String     @id @default(uuid()) // Definindo o id como chave primária e com valor padrão UUID
-  modalidade       String     // Modalidade do contrato (enum)
-  dataInicio       DateTime   // Data de início do contrato
-  dataFim          DateTime   // Data de término do contrato
-  saldoFerias      Float?     // Saldo de férias (opcional)
-  dataRescisao     DateTime?  // Data de rescisão (opcional)
-  dataInicioFerias DateTime?  // Data de início das férias (opcional)
-  dataFimFerias    DateTime?  // Data de término das férias (opcional)
-  statusFerias     StatusFerias? // Status das férias (enum)
-  diasCorridos     Int?       // Dias corridos (opcional)
+  id               String     @id @default(uuid()) 
+  modalidade       String     
+  dataInicio       DateTime   
+  dataFim          DateTime   
+  saldoFerias      Float?     
+  dataRescisao     DateTime?  
+  dataInicioFerias DateTime?  
+  dataFimFerias    DateTime?  
+  statusFerias     StatusFerias? 
+  diasCorridos     Int?       
 
-  // Relacionamento com Estagiário (muitos contratos pertencem a um estagiário)
-  estagiario       Estagiario @relation(fields: [estagiarioId], references: [id]) // Campo estagiarioId referenciando o ID do estagiário
-  estagiarioId     String     // Chave estrangeira referenciando o ID do estagiário
+  estagiario       Estagiario @relation(fields: [estagiarioId], references: [id]) 
+  estagiarioId     String     
 
-  @@map("contratos") // Mapeando o modelo para uma tabela chamada "contratos" no banco de dados
+  @@map("contratos")
 }
 
-// Modelo para administradores
 model Administrador {
-  id          String     @id @default(uuid()) // Definindo o id como chave primária e com valor padrão UUID
-  nome        String     // Nome do administrador
-  email       String     @unique // Email do administrador, único
-  telefone    String     // Telefone do administrador
-  perfil      Perfil     // Perfil do administrador (enum)
-  status      Status     // Status do administrador (enum)
-  senha       String     // Senha do administrador
-  confirmacao String     // Confirmação de senha do administrador
+  id          String     @id @default(uuid()) 
+  nome        String     
+  email       String     @unique 
+  telefone    String     
+  perfil      Perfil     
+  status      Status     
+  senha       String     
+      
 
-  @@map("administradores") // Mapeando o modelo para uma tabela chamada "administradores" no banco de dados
+  @@map("administradores")
 }
 
-// Definição do tipo enum Perfil
 enum Perfil {
   Administrador
   Usuario
 }
 
-// Definição do tipo enum Status
-enum Status {
+ enum Status {
   Ativo
   Inativo
 }
 
-// Definição do tipo enum StatusFerias
 enum StatusFerias {
   Aprovada
   Reprovada
