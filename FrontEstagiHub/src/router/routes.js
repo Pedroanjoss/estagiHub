@@ -3,7 +3,9 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') }
+      { path: 'dashboard', name: "dashboard", component: () => import('../pages/IndexPage.vue') },
+      { path: 'estagiarios', name: "estagiarios", component: () => import('../pages/Estagiarios.vue') },
+      { path: 'users', name: "users", component: () => import('../pages/Users.vue') }
     ]
   },
 
@@ -16,3 +18,4 @@ const routes = [
 ]
 
 export default routes
+

@@ -1,10 +1,11 @@
 <template>
-  <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    >
+  <q-page >
+    <div style="width: 50%; margin: 10% 25%;">
+      <q-page padding class="d-flex justify-center align-center" style="height: 100%;">
+        
+       <h1>Dashboar</h1>
+      </q-page>
+    </div>
   </q-page>
 </template>
 
@@ -13,3 +14,11 @@ defineOptions({
   name: 'IndexPage'
 });
 </script>
+
+<style>
+  .ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+</style>
