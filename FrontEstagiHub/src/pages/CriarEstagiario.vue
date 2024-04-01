@@ -48,6 +48,7 @@
           />
           <div class="q-mt-md">
             <q-btn type="submit" color="primary" label="Criar Estagiário" />
+            <q-btn color="secondary" label="Cancelar" @click="voltarPagina" />
           </div>
         </q-form>
       </q-card-section>
@@ -114,7 +115,11 @@ export default defineComponent({
       } catch (error) {
         console.error("Erro ao criar estagiário:", error.response.data);
       }
-    };
+    }
+    
+    const voltarPagina = () => {
+      router.push({ name: "estagiarios" });
+    }
 
     
 
@@ -128,6 +133,7 @@ export default defineComponent({
       senhaRules,
       confirmarSenhaRules,
       criarEstagiario,
+      voltarPagina
     };
   },
 });

@@ -1,3 +1,4 @@
+User
 <template>
   <div class="q-pa-md">
     <q-table
@@ -11,19 +12,33 @@
       :rows-per-page-options="[0]"
     >
       <template v-slot:body-cell-actions="{ row }">
-      
-        <q-btn  color="primary" label="Contratos" />
-       
-        <q-btn  color="secondary" label="Editar" />
+        <q-btn @click="visualizarContratos(row)" color="primary" label="Contratos" />
+        <q-btn @click="editarEstagiario(row.id)" color="secondary" label="Editar" />
+        <q-btn @click="confirmarExclusao(row)" color="negative" label="Excluir" />
       </template>
     </q-table>
-    <RouterLink to="/estagiarios/criarEstagiario">Criar Estagiairo</RouterLink>
+
+    <q-btn @click="criarEstagiario()" color="primary" label="Criar Estagiario" />
+
+    <q-dialog v-model="exibindoModalExclusao" persistent>
+      <q-card>
+        <q-card-section>
+          <q-card-title>Confirmação de exclusão</q-card-title>
+          <q-card-text>
+            Tem certeza de que deseja excluir esse usuário? Ao confirmar essa ação, você não poderá desfazê-la.
+          </q-card-text>
+        </q-card-section>
+        <q-card-actions align="right">
+          <q-btn label="Cancelar" color="primary" @click="exibindoModalExclusao = false" />
+          <q-btn label="Sim, excluir!" color="negative" @click="excluirUsuario" />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
 <script>
 import { api } from 'boot/axios'
-import { useRouter } from "vue-router";
 
 
 export default {
@@ -36,35 +51,58 @@ export default {
         { name: 'telefone', label: 'Telefone', align: 'left', field: 'telefone' },
         { name: 'status', label: 'Status', align: 'left', field: 'status' },
         { name: 'actions', label: 'Ações', align: 'center' }
-      ]
+      ],
+      exibindoModalExclusao: false,
+      usuarioParaExcluir: null
     };
   },
   created() {
     this.fetchEstagiarios();
   },
-  methods:
-   {
+  methods: {
     async fetchEstagiarios() {
       try {
         const response = await api.get('/app/estagiarios');
         this.estagiarios = response.data;
-        
       } catch (error) {
         console.error('Erro ao buscar estagiários:', error);
       }
     },
-
-    criarEstagiario() {
-      const router = useRouter(); 
-      router.push("/estagiarios/criarEstagiario")
-    }
     
-   
-   
+    visualizarContratos(row) {
+      // Implemente a função de visualizar contratos se necessário
+    },
+
+    criarEstagiario(){
+      this.$router.push({ name: "criarEstagiario" })
+    },
+    
+    editarEstagiario(id) {
+      this.$router.push({ name: 'editarEstagiario', params: { id } })
+    },
+    
+    confirmarExclusao(row) {
+      this.usuarioParaExcluir = row;
+      this.exibindoModalExclusao = true;
+    },
+
+    async excluirUsuario() {
+      try {
+        if (this.usuarioParaExcluir) {
+          await api.delete(`/app/estagiarios/${this.usuarioParaExcluir.id}`);
+         
+          this.estagiarios = this.estagiarios.filter(estagiario => estagiario.id !== this.usuarioParaExcluir.id);
+          this.exibindoModalExclusao = false;
+          console.log('Usuário excluído com sucesso!');
+          
+        }
+      } catch (error) {
+        console.error('Erro ao excluir usuário:', error);
+      }
+    }
   }
 };
 </script>
 
 <style scoped>
-/* Estilos opcionais para o componente */
 </style>
