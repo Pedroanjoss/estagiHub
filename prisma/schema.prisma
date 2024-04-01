@@ -22,6 +22,7 @@ model Usuario {
 
 model Estagiario {
   id       String    @id @default(uuid()) 
+  nome     String
   email    String    @unique 
   telefone String    
   status   Status    
@@ -50,18 +51,6 @@ model Contrato {
   @@map("contratos")
 }
 
-model Administrador {
-  id          String     @id @default(uuid()) 
-  nome        String     
-  email       String     @unique 
-  telefone    String     
-  perfil      Perfil     
-  status      Status     
-  senha       String     
-      
-
-  @@map("administradores")
-}
 
 enum Perfil {
   Administrador

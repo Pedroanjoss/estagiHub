@@ -10,7 +10,7 @@ export class AppController {
 
   
 
-  // Create
+  
   @Post("usuarios")
   async createUsuario(@Body() usuarioData: CreateUsuarioDto): Promise<any> { // Usando o DTO
     return this.prisma.usuario.create({
@@ -18,7 +18,7 @@ export class AppController {
     });
   }
 
-  // Read
+  
   @Get("usuarios")
   async getUsuarios(): Promise<any> {
     return this.prisma.usuario.findMany();
@@ -35,7 +35,7 @@ export class AppController {
     return usuario;
   }
 
-  // Update
+ 
   @Put("usuarios/:id")
   async updateUsuario(@Param("id") id: string, @Body() usuarioData: any): Promise<any> {
     return this.prisma.usuario.update({
@@ -44,7 +44,7 @@ export class AppController {
     });
   }
 
-  // Delete
+  
   @Delete("usuarios/:id")
   async deleteUsuario(@Param("id") id: string): Promise<any> {
     return this.prisma.usuario.delete({
@@ -52,9 +52,7 @@ export class AppController {
     });
   }
 
-  // CRUD para gerenciar estagiários
-
-  // Create
+  
   @Post("estagiarios")
   async createEstagiario(@Body() estagiarioData: CreateEstagiarioDto): Promise<any> {
     return this.prisma.estagiario.create({
@@ -62,7 +60,7 @@ export class AppController {
     });
   }
 
-  // Read
+ 
   @Get("estagiarios")
   async getEstagiarios(): Promise<any> {
     return this.prisma.estagiario.findMany();
@@ -79,7 +77,7 @@ export class AppController {
     return estagiario;
   }
 
-  // Update
+  
   @Put("estagiarios/:id")
   async updateEstagiario(@Param("id") id: string, @Body() estagiarioData: any): Promise<any> {
     return this.prisma.estagiario.update({
@@ -88,7 +86,7 @@ export class AppController {
     });
   }
 
-  // Delete
+  
   @Delete("estagiarios/:id")
   async deleteEstagiario(@Param("id") id: string): Promise<any> {
     return this.prisma.estagiario.delete({
@@ -96,9 +94,9 @@ export class AppController {
     });
   }
 
-  // CRUD para gerenciar contratos
+  
 
-  // Create
+  
   @Post("contratos")
   async createContrato(@Body() contratoData: CreateContratoDto): Promise<any> {
     return this.prisma.contrato.create({
@@ -106,7 +104,6 @@ export class AppController {
     });
   }
 
-  // Read
   @Get("contratos")
   async getContratos(): Promise<any> {
     return this.prisma.contrato.findMany();

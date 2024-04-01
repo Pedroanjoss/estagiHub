@@ -24,6 +24,7 @@ CREATE TABLE "usuarios" (
 -- CreateTable
 CREATE TABLE "estagiarios" (
     "id" TEXT NOT NULL,
+    "nome" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "telefone" TEXT NOT NULL,
     "status" "Status" NOT NULL,
