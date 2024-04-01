@@ -11,11 +11,13 @@ User
       virtual-scroll
       :rows-per-page-options="[0]"
     >
-      <template v-slot:body-cell-actions="{ row }">
+    <template v-slot:body-cell-actions="{ row }">
+      <div class="actions-container">
         <q-btn @click="visualizarContratos(row)" color="primary" label="Contratos" />
         <q-btn @click="editarEstagiario(row.id)" color="secondary" label="Editar" />
         <q-btn @click="confirmarExclusao(row)" color="negative" label="Excluir" />
-      </template>
+      </div>
+    </template>
     </q-table>
 
     <q-btn @click="criarEstagiario()" color="primary" label="Criar Estagiario" />
@@ -69,8 +71,9 @@ export default {
       }
     },
     
-    visualizarContratos(row) {
-      // Implemente a função de visualizar contratos se necessário
+    visualizarContratos(estagiarioId) {
+      // Navegar para a página de contratos passando o ID do estagiário como parâmetro
+      this.$router.push({ name: 'contratos', params: { id: estagiarioId } });
     },
 
     criarEstagiario(){
@@ -105,4 +108,8 @@ export default {
 </script>
 
 <style scoped>
+.actions-container {
+  display: flex;
+  justify-content: center;
+}
 </style>

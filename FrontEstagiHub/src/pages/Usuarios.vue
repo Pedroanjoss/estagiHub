@@ -11,8 +11,10 @@
       :rows-per-page-options="[0]"
     >
       <template v-slot:body-cell-actions="{ row }">
+        <div class="actions-container">
         <q-btn @click="editarUsuario(row.id)" color="secondary" label="Editar" />
         <q-btn @click="confirmarExclusao(row)" color="negative" label="Excluir" />
+      </div>
       </template>
     </q-table>
 
@@ -97,4 +99,8 @@ export default {
 </script>
 
 <style scoped>
+.actions-container {
+  display: flex;
+  justify-content: center;
+}
 </style>

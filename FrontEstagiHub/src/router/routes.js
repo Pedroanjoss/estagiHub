@@ -9,12 +9,12 @@ const routes = [
       { path: '/editarUsuario/:id', name:"editarUsuario", component: () => import('../pages/EditarUsuario.vue') , props: true },
       { path: 'estagiarios', name: "estagiarios", component: () => import('../pages/Estagiarios.vue') },
       { path: 'estagiarios/criarEstagiario', name: "criarEstagiario", component: () => import('../pages/CriarEstagiario.vue') },
-      { path: '/editarEstagiario/:id', name:"editarEstagiario", component: () => import('../pages/EditarEstagiario.vue') , props: true }
+      { path: '/editarEstagiario/:id', name:"editarEstagiario", component: () => import('../pages/EditarEstagiario.vue') , props: true },
+
     ]
   },
 
-  // Always leave this as last one,
-  // but you can also remove it
+  
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue')
