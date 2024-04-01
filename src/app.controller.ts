@@ -120,7 +120,7 @@ export class AppController {
     return contrato;
   }
 
-  // Update
+  
   @Put("contratos/:id")
   async updateContrato(@Param("id") id: string, @Body() contratoData: any): Promise<any> {
     return this.prisma.contrato.update({
@@ -129,7 +129,7 @@ export class AppController {
     });
   }
 
-  // Delete
+  
   @Delete("contratos/:id")
   async deleteContrato(@Param("id") id: string): Promise<any> {
     return this.prisma.contrato.delete({

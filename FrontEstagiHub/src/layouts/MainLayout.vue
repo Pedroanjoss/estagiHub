@@ -67,7 +67,7 @@ const linksList = [
   {
     title: 'Usuarios',
     icon: 'group',
-    route: {name: "users"}
+    route: {name: "usuarios"}
   },
   
 ]

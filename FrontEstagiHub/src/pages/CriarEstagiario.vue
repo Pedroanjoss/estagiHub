@@ -7,48 +7,62 @@
           @reset="limparFormulario"
           class="q-gutter-md"
         >
-          <q-input
-            outlined
-            v-model="form.nome"
-            label="Nome"
-            :rules="nomeRules"
-          />
-          <q-input
-            outlined
-            v-model="form.email"
-            label="Email"
-            type="email"
-            :rules="emailRules"
-          />
-          <q-input
-            outlined
-            v-model="form.telefone"
-            label="Telefone"
-            :rules="telefoneRules"
-            mask="(##) # ####-####"
-          />
-          <q-select
-            outlined
-            v-model="form.status"
-            label="Status"
-            :options="statusOptions"
-            :rules="statusRules"
-          />
-          <q-input
-            outlined
-            v-model="form.senha"
-            label="Senha"
-            :rules="senhaRules"
-          />
-          <q-input
-            outlined
-            v-model="form.confirmarSenha"
-            label="Confirmar Senha"
-            :rules="confirmarSenhaRules"
-          />
-          <div class="q-mt-md">
-            <q-btn type="submit" color="primary" label="Criar Estagiário" />
-            <q-btn color="secondary" label="Cancelar" @click="voltarPagina" />
+          <div class="q-gutter-md">
+            <div class="row q-col-gutter-md">
+              <div class="col">
+                <q-input
+                  outlined
+                  v-model="form.nome"
+                  label="Nome"
+                  :rules="nomeRules"
+                />
+              </div>
+              <div class="col">
+                <q-input
+                  outlined
+                  v-model="form.email"
+                  label="Email"
+                  type="email"
+                  :rules="emailRules"
+                />
+              </div>
+            </div>
+            <div class="row q-col-gutter-md">
+              <div class="col">
+                <q-input
+                  outlined
+                  v-model="form.telefone"
+                  label="Telefone"
+                  :rules="telefoneRules"
+                  mask="(##) # ####-####"
+                />
+              </div>
+              <div class="col">
+                <q-select
+                  outlined
+                  v-model="form.status"
+                  label="Status"
+                  :options="statusOptions"
+                  :rules="statusRules"
+                />
+              </div>
+            </div>
+            <q-input
+              outlined
+              v-model="form.senha"
+              label="Senha"
+              :rules="senhaRules"
+            />
+            <q-input
+              outlined
+              v-model="form.confirmarSenha"
+              label="Confirmar Senha"
+              :rules="confirmarSenhaRules"
+            />
+            <div class="q-mt-md">
+              <q-btn type="submit" color="primary" label="Criar Estagiário" />
+              <q-btn color="secondary" label="Cancelar" @click="voltarPagina" />
+            </div>
           </div>
         </q-form>
       </q-card-section>
@@ -61,8 +75,6 @@ import { defineComponent, ref } from "vue";
 
 import { api } from "src/boot/axios";
 import { useRouter } from "vue-router";
-
-
 
 export default defineComponent({
   setup() {
@@ -121,8 +133,6 @@ export default defineComponent({
       router.push({ name: "estagiarios" });
     }
 
-    
-
     return {
       form,
       statusOptions,
@@ -138,3 +148,7 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+  /* Adicione estilos personalizados aqui, se necessário */
+</style>
