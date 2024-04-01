@@ -11,18 +11,20 @@
       :rows-per-page-options="[0]"
     >
       <template v-slot:body-cell-actions="{ row }">
-        <!-- Botão para visualizar contratos -->
-        <q-btn @click="visualizarContratos(row)" color="primary" label="Contratos" />
-        <!-- Botão para redirecionar para a página de edição -->
-        <q-btn @click="editarEstagiario(row.id)" color="secondary" label="Editar" />
+      
+        <q-btn  color="primary" label="Contratos" />
+       
+        <q-btn  color="secondary" label="Editar" />
       </template>
     </q-table>
-    <q-btn color="primary" label="Criar Estagiário" @click="criarEstagiario" />
+    <RouterLink to="/estagiarios/criarEstagiario">Criar Estagiairo</RouterLink>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import { api } from 'boot/axios'
+import { useRouter } from "vue-router";
+
 
 export default {
   data() {
@@ -40,40 +42,25 @@ export default {
   created() {
     this.fetchEstagiarios();
   },
-  methods: {
+  methods:
+   {
     async fetchEstagiarios() {
       try {
-        const response = await axios.get('http://localhost:3000/app/estagiarios');
+        const response = await api.get('/app/estagiarios');
         this.estagiarios = response.data;
-        console.log(response.data);
+        
       } catch (error) {
         console.error('Erro ao buscar estagiários:', error);
       }
     },
-    async criarEstagiario() {
-      try {
-        const novoEstagiario = {
-          nome: 'Novo Estagiário',
-          email: 'novo@example.com',
-          telefone: '123456789',
-          status: 'Ativo'
-        };
-        const response = await axios.post('http://localhost:3000/app/estagiarios', novoEstagiario);
-        console.log('Estagiário criado:', response.data);
-        // Atualize a lista de estagiários após criar um novo estagiário
-        this.fetchEstagiarios();
-      } catch (error) {
-        console.error('Erro ao criar estagiário:', error);
-      }
-    },
-    visualizarContratos(estagiario) {
-      // Lógica para visualizar contratos do estagiário
-      console.log('Visualizar contratos de', estagiario.nome);
-    },
-    editarEstagiario(id) {
-      // Redirecionar para a página de edição de estagiários com o ID do estagiário
-      this.$router.push({ name: 'editarEstagiario', params: { id } });
+
+    criarEstagiario() {
+      const router = useRouter(); 
+      router.push("/estagiarios/criarEstagiario")
     }
+    
+   
+   
   }
 };
 </script>
