@@ -4,7 +4,7 @@
       <q-card-section>
         <q-form
           @submit="atualizarEstagiario"
-          @reset="limparFormulario"
+          
           class="q-gutter-md"
         >
           <div class="row q-col-gutter-md">

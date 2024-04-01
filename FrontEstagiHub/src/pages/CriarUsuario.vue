@@ -4,7 +4,7 @@
         <q-card-section>
           <q-form
             @submit="criarUsuario"
-            @reset="limparFormulario"
+         
             class="q-gutter-md"
           >
             <div class="q-gutter-md">
@@ -173,6 +173,6 @@
   </script>
   
   <style scoped>
-    /* Adicione estilos personalizados aqui, se necessário */
+    
   </style>
   

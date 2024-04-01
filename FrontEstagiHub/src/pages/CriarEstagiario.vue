@@ -4,7 +4,7 @@
       <q-card-section>
         <q-form
           @submit="criarEstagiario"
-          @reset="limparFormulario"
+         
           class="q-gutter-md"
         >
           <div class="q-gutter-md">
@@ -150,5 +150,5 @@ export default defineComponent({
 </script>
 
 <style scoped>
-  /* Adicione estilos personalizados aqui, se necessário */
+ 
 </style>
