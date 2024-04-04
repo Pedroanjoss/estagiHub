@@ -98,9 +98,12 @@ export class AppController {
 
   
   @Post("contratos")
-  async createContrato(@Body() contratoData: CreateContratoDto): Promise<any> {
+  async createContrato(@Body() contratoData: CreateContratoDto, @Body('estagiarioId') estagiarioId: string): Promise<any> {
     return this.prisma.contrato.create({
-      data: contratoData,
+      data: {
+        ...contratoData,
+        estagiario: { connect: { id: estagiarioId } },
+      },
     });
   }
 

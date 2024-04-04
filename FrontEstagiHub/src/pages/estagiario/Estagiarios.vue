@@ -72,7 +72,6 @@ export default {
     },
     
     visualizarContratos(estagiarioId) {
-      // Navegar para a página de contratos passando o ID do estagiário como parâmetro
       this.$router.push({ name: 'contratos', params: { id: estagiarioId } });
     },
 
